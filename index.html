@@ -1,13 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Log In</title>
+
+    <!-- Source files -->
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    
+    <!-- CREATE ACCOUNT CARD -->
+    <main class="create-account-container">
+        <header class="create-account-container-head">
+            <h1>Create Account</h1>
+            <p>Create a new account to get started and enjoy seamless access to our features.</p>
+        </header>
+
+        <section class="user-credentials-form">
+            <form action="" class="create-account-form">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email Address">
+                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Confirm Password">
+            </form>
+        </section>
+        <div class="create-account">
+            <button class="create-account-btn">Create Account</button>
+            <p>Already have an account? <button>Sign In here </button></p>
+        </div>
+        <footer>
+            <div class="continue-with-other-accounts-container">
+                <p>Or Continue With Account</p>
+                <div class="other-accounts">
+                    <button>Facebook</button>
+                    <button>Google</button>
+                    <button>Apple</button>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- LOG IN CARD -->
+    <main class="login-container">
+        <header class="login-container-head">
+            <h1>Log In</h1>
+            <p>Enter your email and password to securely access your account and manage services.</p>
+        </header>
+
+        <section class="user-credentials-form">
+            <form action="" class="login-form">
+                <input type="email" placeholder="Email Address">
+                <input type="password" placeholder="Password">
+            </form>
+        </section>
+        <div class="log-in">
+            <button class="login-btn">Login</button>
+            <p>Don't have an account? <button>Sign Up here </button></p>
+        </div>
+        <footer>
+            <div class="continue-with-other-accounts-container">
+                <p>Or Continue With Account</p>
+                <div class="other-accounts">
+                    <button>Facebook</button>
+                    <button>Google</button>
+                    <button>Apple</button>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Success UI -->
+     <section class="success-container" hidden>
+        <div>
+            <h2>Congratulations!</h2>
+            <p>Account created successfully</p>
+        </div>
+     </section>
 </body>
+
 </html>
