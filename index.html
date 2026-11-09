@@ -8,7 +8,7 @@
 
     <!-- Source files -->
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,10 +27,27 @@
 
         <section class="user-credentials-form">
             <form action="" class="create-account-form">
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email Address">
-                <input type="password" placeholder="Password">
-                <input type="password" placeholder="Confirm Password">
+                <div>
+                    <input class="input-name" type="text" placeholder="Name">
+                    <p class="error-msg">Name required</p>
+                </div>
+
+                <div>
+                    <input class="input-email" type="email" placeholder="Email Address">
+                    <p class="error-msg">Email address required</p>
+                </div>
+
+                <div>
+                    <input class="input-password" type="password" placeholder="Password">
+                    <p class="error-msg">Password required</p>
+                </div>
+
+                <div>
+                    <input class="confirm-password" type="password" placeholder="Confirm Password">
+                    <p class="error-msg">Confirm password to continue</p>
+                    <p class="error-msg confirm-password-error">Password did not match when confirmed. Try again.</p>
+                </div>
+
             </form>
         </section>
         <div class="create-account">
@@ -58,8 +75,8 @@
 
         <section class="user-credentials-form">
             <form action="" class="login-form">
-                <input type="email" placeholder="Email Address">
-                <input type="password" placeholder="Password">
+                <input class="input-email-log" type="email" placeholder="Email Address">
+                <input class="input-password-log" type="password" placeholder="Password">
             </form>
         </section>
         <div class="log-in">
@@ -79,12 +96,12 @@
     </main>
 
     <!-- Success UI -->
-     <section class="success-container" hidden>
+    <section class="success-container">
         <div>
             <h2>Congratulations!</h2>
             <p>Account created successfully</p>
         </div>
-     </section>
+    </section>
 </body>
 
 </html>
