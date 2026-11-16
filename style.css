@@ -13,7 +13,7 @@ body {
     flex-direction: column;
     gap: 2rem;
     min-height: 100vh;
-    font-size: clamp(1rem, 2vw, 1.3rem);
+    /* font-size: clamp(1rem, 2vw, 1.3rem); */
     color: #939393;
     background-color: grey;
 }
@@ -31,6 +31,7 @@ body {
 .create-account-container,
 .login-container {
     max-width: 450px;
+    width: 410px;
     border-radius: 10px;
     box-shadow: 1px 2px 9px -2px black;
     padding: 1rem;
@@ -38,36 +39,52 @@ body {
     background-color: #F6F8FA;
     gap: 2rem;
 }
-.create-account-form input, .login-form input {
+
+.create-account-form input,
+.login-form input {
     margin: .4rem;
     padding: .8rem;
     border-radius: 20px;
     font-size: .9rem;
     color: black;
+    width: 100%;
 }
+
 header h1 {
     text-align: center;
     color: black;
 }
-.login-container-head p, .create-account-container-head p {
-    font-size: 1.2rem;
+
+.login-container-head p,
+.create-account-container-head p {
+    font-size: 1rem;
 }
-.create-account-btn, .login-btn {
+
+.create-account-btn,
+.login-btn {
     background-color: #3BB77E;
     color: white;
     border-radius: 20px;
     width: 50%;
     padding: .5rem 0;
     margin-inline: auto;
+    margin-bottom: 1rem;
 }
-.log-in, .create-account {
+
+.log-in,
+.create-account {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.success-container h2, .success-container p {
-color: black;
+
+.account-success-container h2,
+.account-success-container p,
+.login-success-container h2,
+.login-success-container p {
+    color: black;
 }
+
 .success-container {
     display: flex;
 }
@@ -75,21 +92,107 @@ color: black;
 .login-container {
     display: none;
 }
-.success-container {
+
+.account-success-container,
+.login-success-container {
     display: none;
 }
-.error-msg, .confirm-password-error {
+
+.error-msg,
+.confirm-password-error {
     color: red;
     font-size: .8rem;
     display: none;
 }
+
 .show-credential-error {
     display: block;
 }
+
 .show-confirm-password-error {
     display: block;
 }
 
+.account-delete-btn {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    background-color: red;
+    color: white;
+    padding: .5rem .8rem;
+    border-radius: 20px;
+    transform: scale(0.7);
+    display: none;
+}
+
+.sign-in-btn {
+    border: none;
+    color: #3BB77E;
+    background-color: none;
+
+}
+
+.account-delete-confirmation-container {
+    background-color: white;
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    color: black;
+    position: absolute;
+}
+
+#blur-bg {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    background: rgba(128, 128, 128, 0.56);
+    backdrop-filter: blur(15px);
+    transform: scale(0);
+}
+
+.account-delete-confirmation-container .user-sure {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.account-delete-confirmation-container .warning-msg {
+    margin-block: 1rem;
+}
+
+.account-delete-confirmation-container .warning-msg p {
+    opacity: .8;
+}
+
+
+.account-delete-confirmation-container .buttons {
+    display: flex;
+    justify-content: center;
+    gap: .8rem;
+}
+
+.account-delete-confirmation-container .buttons .btn {
+    padding: .6rem 3rem;
+    border-radius: 7px;
+}
+
+.account-delete-confirmation-container .buttons .delete-btn {
+    background-color: rgba(255, 0, 0, 0.84);
+    color: white;
+}
+
+.account-delete-confirmation-container .buttons .cancel-btn {
+    background-color: white;
+    border: 1px solid;
+}
+
+/* .bg-blur {
+    position: absolute;
+    width: 100vw;
+    min-height: 100vh;    
+    background-color: red;
+} */
 
 
 
@@ -109,13 +212,14 @@ color: black;
 
 
 
-
-button, input {
+button,
+input {
     font-size: inherit;
     border: none;
     outline: none;
     color: inherit;
 }
+
 button {
     cursor: pointer;
 }

@@ -18,11 +18,14 @@
 </head>
 
 <body>
+    <button class="account-delete-btn">Delete account</button>
+
     <!-- CREATE ACCOUNT CARD -->
     <main class="create-account-container">
         <header class="create-account-container-head">
             <h1>Create Account</h1>
             <p>Create a new account to get started and enjoy seamless access to our features.</p>
+
         </header>
 
         <section class="user-credentials-form">
@@ -52,7 +55,7 @@
         </section>
         <div class="create-account">
             <button class="create-account-btn">Create Account</button>
-            <p>Already have an account? <button>Sign In here </button></p>
+            <p>Already have an account? <button class="sign-in-btn">Sign In here </button></p>
         </div>
         <footer>
             <div class="continue-with-other-accounts-container">
@@ -70,13 +73,22 @@
     <main class="login-container">
         <header class="login-container-head">
             <h1>Log In</h1>
-            <p>Enter your email and password to securely access your account and manage services.</p>
+            <p>Enter your email and password to securely access</p>
+            <p style="text-align: center;">your account and manage services.</p>
         </header>
 
         <section class="user-credentials-form">
             <form action="" class="login-form">
-                <input class="input-email-log" type="email" placeholder="Email Address">
-                <input class="input-password-log" type="password" placeholder="Password">
+                <div>
+                    <input class="input-email-log" type="email" placeholder="Email Address">
+                    <p class="error-msg">Incorrect email address</p>
+                    <p class="error-msg">Please enter email address</p>
+                </div>
+                <div>
+                    <input class="input-password-log" type="password" placeholder="Password">
+                    <p class="error-msg">Incorrect password</p>
+                    <p class="error-msg">Please enter passsword</p>
+                </div>
             </form>
         </section>
         <div class="log-in">
@@ -96,12 +108,34 @@
     </main>
 
     <!-- Success UI -->
-    <section class="success-container">
+    <div class="account-success-container">
         <div>
-            <h2>Congratulations!</h2>
-            <p>Account created successfully</p>
+            <h2>Congratulations! <span id="user-name"></span></h2>
+            <p>Your account created successfully</p>
         </div>
-    </section>
+    </div>
+    <div class="login-success-container">
+        <div>
+            <h2>You are logged in your account</h2>
+            <p>Access our services and features</p>
+        </div>
+    </div>
+
+    <div id="blur-bg">
+        <div class="account-delete-confirmation-container">
+            <p class="user-sure">Are you sure?</p>
+            <div class="warning-msg">
+                <p>Are you sure you want to delete your account? This action
+                <p style="text-align: center;">cannot be undone.</p>
+                </p>
+            </div>
+            <div class="buttons">
+                <button class="cancel-btn btn">Cancel</button>
+                <button class="delete-btn btn">Delete</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
