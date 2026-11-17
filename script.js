@@ -166,7 +166,7 @@ function loadData() {
 function render() {
     accountSuccessMsgContainer.style.display = 'none';
     createAccountContainer.style.display = "none";
-    loginContainer.style.display = "block";
+    loginContainer.style.transform = "scale(1)";
     document.querySelector('.account-delete-btn').style.display = 'block';
     loginBtn.addEventListener('click', logIn)
 
@@ -181,4 +181,3 @@ createAccountBtn.addEventListener('click', () => {
 document.querySelector('.account-delete-btn').addEventListener('click', accountDeletion)
 
 loadData()
-

@@ -15,7 +15,8 @@ body {
     min-height: 100vh;
     /* font-size: clamp(1rem, 2vw, 1.3rem); */
     color: #939393;
-    background-color: grey;
+    background: #2A7B9B;
+    background: linear-gradient(150deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(59, 183, 126, 1) 100%);
 }
 
 .create-account-container,
@@ -40,14 +41,38 @@ body {
     gap: 2rem;
 }
 
-.create-account-form input,
-.login-form input {
+.create-account-container footer .continue-with-other-accounts-container,
+.login-container footer .continue-with-other-accounts-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .6rem;
+}
+.continue-with-other-accounts-container img {
+    width: 24px;
+}
+.continue-with-other-accounts-container .other-accounts button {
+    margin: .6rem;
+}
+.input-container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
     margin: .4rem;
     padding: .8rem;
     border-radius: 20px;
+    gap: .7rem;
+    width: 100%;
+
+    background-color: white;
+}
+
+.create-account-form input,
+.login-form input {
+    flex-grow: 1;
     font-size: .9rem;
     color: black;
-    width: 100%;
 }
 
 header h1 {
@@ -65,8 +90,8 @@ header h1 {
     background-color: #3BB77E;
     color: white;
     border-radius: 20px;
-    width: 50%;
-    padding: .5rem 0;
+    width: 90%;
+    padding: .8rem 0;
     margin-inline: auto;
     margin-bottom: 1rem;
 }
@@ -90,7 +115,8 @@ header h1 {
 }
 
 .login-container {
-    display: none;
+    position: absolute;
+    transform: scale(0);
 }
 
 .account-success-container,
