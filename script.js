@@ -1,31 +1,39 @@
-// Content Containers
+// Create Account Containers
 const createAccountContainer = document.querySelector('.create-account-container');
-const loginContainer = document.querySelector('.login-container');
+const createAccountCredentials = document.querySelectorAll('.create-account-form input');
+const createAccountCredentialsArray = [...createAccountCredentials];
 const accountSuccessMsgContainer = document.querySelector('.account-success-container');
-const loginSuccessMsgContainer = document.querySelector('.login-success-container');
-const userName = document.getElementById('user-name');
 const accountDeleteConfirm = document.querySelector('#blur-bg');
 const accountDeleteConfirmButtons = [...document.querySelector('.account-delete-confirmation-container .buttons').children];
 
-const createAccountCredentials = document.querySelectorAll('.create-account-form div');
-// There are two children in each input container (div). Input element itself and a <p> tag for error message
-const createAccountCredentialsArray = [...createAccountCredentials];
+// Error messages in account creation
+const nameError = document.querySelector('.create-account-form .name-wrapper p');
+const emailError = document.querySelector('.create-account-form .email-wrapper p');
+const passwordError = document.querySelector('.create-account-form .password-wrapper p');
+const confirmPasswordErrors = [...document.querySelectorAll('.create-account-form .confirm-password-wrapper .confirm-password-errors p ')];
 
-const loginCredentials = document.querySelectorAll('.login-form div');
+// Login Containers
+const loginContainer = document.querySelector('.login-container');
+const loginSuccessMsgContainer = document.querySelector('.login-success-container');
+const loginCredentials = document.querySelectorAll('.login-form input');
 const loginCredentialsArray = [...loginCredentials];
-
+// Login errors
+const loginEmailErrors = [...document.querySelectorAll('.login-form .email-wrapper p')];
+const loginPasswordErrors = [...document.querySelectorAll('.login-form .password-wrapper p')];
 // Buttons
 const createAccountBtn = document.querySelector('.create-account-btn');
 const loginBtn = document.querySelector('.login-btn');
 
 let userData = [];
+const userName = document.getElementById('user-name');
+
 
 function confirmPassword() {
-    if (createAccountCredentialsArray[2].children[0].value === createAccountCredentialsArray[3].children[0].value) {
+    if (createAccountCredentialsArray[2].value === createAccountCredentialsArray[3].value) {
         return true;
     }
     else {
-        createAccountCredentialsArray[3].children[2].classList.add('show-confirm-password-error')
+        confirmPasswordErrors[1].classList.add('show-credential-error');
 
     }
 }
@@ -35,66 +43,104 @@ function createAccount() {
         email: '',
         password: '',
     }
-    data.email = createAccountCredentialsArray[1].children[0].value;
-    data.password = createAccountCredentialsArray[2].children[0].value;
-    if (data.email && data.password) {
-        userData.push(data);
+    data.email = createAccountCredentialsArray[1].value;
+    data.password = createAccountCredentialsArray[2].value;
 
-    }
-    saveData()
-    userName.innerText = createAccountCredentialsArray[0].children[0].value;
+    userName.innerText = createAccountCredentialsArray[0].value;
 
-    const hasEnteredAllData = createAccountCredentialsArray.every(input => input.children[0].value);
+    const hasEnteredAllData = createAccountCredentialsArray.every(input => input.value);
     const isPasswordConfirmed = confirmPassword();
-    console.log(hasEnteredAllData);
-    console.log(isPasswordConfirmed);
+
 
     if (hasEnteredAllData && isPasswordConfirmed) {
         accountSuccessMsgContainer.style.display = 'block';
         createAccountContainer.style.display = "none";
+        userData.push(data);
+        saveData()
+
     }
     else {
         createAccountCredentialsArray.forEach((input) => {
-            if (input.children[0].value == '') {
-                input.children[1].classList.add('show-credential-error')
+            if (input.value == '') {
+                if (input.classList.contains('input-name')) {
+                    nameError.classList.add('show-credential-error');
+                }
+                else if (input.classList.contains('input-email')) {
+                    emailError.classList.add('show-credential-error');
+                }
+                else if (input.classList.contains('input-password')) {
+                    passwordError.classList.add('show-credential-error');
+                }
+                else {
+                    confirmPasswordErrors[0].classList.add('show-credential-error');
+                }
             }
-            input.children[0].addEventListener('focus', () => {
-                input.children[1].classList.remove('show-credential-error')
-
+            input.addEventListener('focus', () => {
+                // Selects the error message of the specific input
+                const errorMsg = '.' + input.parentElement.parentElement.className + ' p';
+                document.querySelector(`${errorMsg}`).classList.remove('show-credential-error');
             })
         })
-        createAccountCredentialsArray[3].children[0].addEventListener('focus', () => {
-            createAccountCredentialsArray[3].children[2].classList.remove('show-confirm-password-error')
-
+        createAccountCredentialsArray[3].addEventListener('focus', (e) => {
+            // Selects the error message of the specific input
+            const errorMsg = '.' + e.target.parentElement.parentElement.className + ' p';
+            [...document.querySelectorAll(`${errorMsg}`)].forEach(err => err.classList.remove('show-credential-error'));
         })
     }
 }
+function accountDeletion() {
+    accountDeleteConfirm.style.transform = 'scale(1)';
+    accountDeleteConfirmButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.classList.contains('delete-btn')) {
+                localStorage.removeItem('userData');
+                location.reload();
+            }
+            else {
+                accountDeleteConfirm.addEventListener('click', () => {
+                    accountDeleteConfirm.style.transform = 'scale(0)';
+
+                })
+            }
+
+        })
+    })
+    accountDeleteConfirm.addEventListener('click', () => {
+        accountDeleteConfirm.style.transform = 'scale(0)';
+
+    })
+
+}
 function logIn() {
-    if (loginCredentialsArray[0].children[0].value == userData[0].email && loginCredentialsArray[1].children[0].value == userData[0].password) {
+    if (loginCredentialsArray[0].value == userData[0].email && loginCredentialsArray[1].value == userData[0].password) {
 
         loginContainer.style.display = "none";
         loginSuccessMsgContainer.style.display = 'block';
     }
     else {
         // To show error if credentials do not match other than empty space
-        if (loginCredentialsArray[0].children[0].value !== userData[0].email && loginCredentialsArray[0].children[0].value !== '') {
-            loginCredentialsArray[0].children[1].classList.add('show-credential-error');
+        if (loginCredentialsArray[0].value !== userData[0].email && loginCredentialsArray[0].value !== '') {
+            loginEmailErrors[0].classList.add('show-credential-error');
         }
-        if (loginCredentialsArray[1].children[0].value !== userData[0].password && loginCredentialsArray[1].children[0].value !== '') {
-            loginCredentialsArray[1].children[1].classList.add('show-credential-error');
+        if (loginCredentialsArray[1].value !== userData[0].password && loginCredentialsArray[1].value !== '') {
+            loginPasswordErrors[0].classList.add('show-credential-error');
+
         }
         // To show error if user did not enter anything
-        if (loginCredentialsArray[0].children[0].value == '') {
-            loginCredentialsArray[0].children[2].classList.add('show-credential-error');
+        if (loginCredentialsArray[0].value == '') {
+            loginEmailErrors[1].classList.add('show-credential-error');
+
         }
-        if (loginCredentialsArray[1].children[0].value == '') {
-            loginCredentialsArray[1].children[2].classList.add('show-credential-error');
+        if (loginCredentialsArray[1].value == '') {
+            loginPasswordErrors[1].classList.add('show-credential-error');
+
         }
     }
-    document.querySelector('.login-form').addEventListener('click', () => {
-        loginCredentialsArray.forEach((input) => {
-            input.children[1].classList.remove('show-credential-error')
-            input.children[2].classList.remove('show-credential-error')
+    loginCredentialsArray.forEach((input) => {
+        input.addEventListener('focus', () => {
+            // Selects the error message of the specific input
+            const errorMsg = '.' + input.parentElement.parentElement.className + ' p';
+            [...document.querySelectorAll(`${errorMsg}`)].forEach(err => err.classList.remove('show-credential-error'));
         })
     })
 
@@ -130,63 +176,9 @@ function render() {
 createAccountBtn.addEventListener('click', () => {
     createAccount();
 })
-function accountDeletion() {
-    accountDeleteConfirm.style.transform = 'scale(1)';
-    accountDeleteConfirmButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            if (button.classList.contains('delete-btn')) {
-                localStorage.removeItem('userData');
-                location.reload();
-            }
-            else {
-                accountDeleteConfirm.addEventListener('click', () => {
-                    accountDeleteConfirm.style.transform = 'scale(0)';
 
-                })
-            }
-
-        })
-    })
-    accountDeleteConfirm.addEventListener('click', () => {
-        accountDeleteConfirm.style.transform = 'scale(0)';
-
-    })
-
-}
 
 document.querySelector('.account-delete-btn').addEventListener('click', accountDeletion)
 
 loadData()
 
-
-
-
-
-
-
-
-
-
-//  else {
-//         if (loginCredentialsArray[0].children[0].value.trim() !== userData[0].email) {
-//             loginCredentialsArray[0].children[1].classList.add('show-credential-error')
-//         }
-//         else  {
-//             loginCredentialsArray[0].children[2].classList.add('show-credential-error')
-//         }
-//         if (loginCredentialsArray[1].children[0].value.trim() !== userData[0].password) {
-//             loginCredentialsArray[1].children[1].classList.add('show-credential-error')
-//         }
-//         else {
-//             loginCredentialsArray[1].children[2].classList.add('show-credential-error')
-//         }
-
-//     }
-//     loginCredentialsArray[0].children[0].addEventListener('focus', () => {
-//         loginCredentialsArray[3].children[1].classList.remove('show-confirm-password-error')
-
-//     })
-//     loginCredentialsArray[1].children[0].addEventListener('focus', () => {
-//         loginCredentialsArray[1].children[1].classList.remove('show-confirm-password-error')
-
-//     })
