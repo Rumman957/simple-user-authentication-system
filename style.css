@@ -29,8 +29,8 @@ body {
 
 .create-account-container,
 .login-container {
-    max-width: 450px;
-    width: 410px;
+    max-width: 28.125rem;
+    width: 25.62rem;
     border-radius: 10px;
     box-shadow: 1px 2px 9px -2px black;
     padding: 1rem;
@@ -117,8 +117,7 @@ header h1 {
 }
 
 .login-container {
-    position: absolute;
-    transform: scale(0);
+    display: none;
 }
 
 .account-success-container,
@@ -149,6 +148,10 @@ header h1 {
 .login-success-container p {
     text-align: center;
     margin-top: .7rem;
+}
+
+.login-success-container h2 {
+    text-align: center;
 }
 
 .account-success-container .head {
@@ -262,4 +265,23 @@ input {
 
 button {
     cursor: pointer;
+}
+
+/* Responsivness */
+@media (max-width:530px) {
+    html {
+        font-size: 13px;
+    }
+
+    .account-delete-confirmation-container {
+        margin-inline: 1rem;
+    }
+
+}
+
+/* For extra small mobiles */
+@media (max-width:350px) {
+    html {
+        font-size: 10px;
+    }
 }

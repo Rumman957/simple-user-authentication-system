@@ -49,11 +49,14 @@ function createAccount() {
     userName.innerText = createAccountCredentialsArray[0].value;
 
     const hasEnteredAllData = createAccountCredentialsArray.every(input => input.value);
-    const isPasswordConfirmed = confirmPassword();
+    let isPasswordConfirmed;
+    if (createAccountCredentialsArray[3].value.trim()) {
+         isPasswordConfirmed = confirmPassword();
 
+    }
 
     if (hasEnteredAllData && isPasswordConfirmed) {
-        accountSuccessMsgContainer.style.display = 'block';
+        accountSuccessMsgContainer.style.display = 'flex';
         createAccountContainer.style.display = "none";
         userData.push(data);
         saveData()
@@ -115,7 +118,7 @@ function logIn() {
     if (loginCredentialsArray[0].value == userData[0].email && loginCredentialsArray[1].value == userData[0].password) {
 
         loginContainer.style.display = "none";
-        loginSuccessMsgContainer.style.display = 'block';
+        loginSuccessMsgContainer.style.display = 'flex';
     }
     else {
         // To show error if credentials do not match other than empty space
@@ -136,6 +139,7 @@ function logIn() {
 
         }
     }
+    
     loginCredentialsArray.forEach((input) => {
         input.addEventListener('focus', () => {
             // Selects the error message of the specific input
@@ -163,10 +167,11 @@ function loadData() {
         render();
     }
 }
+
 function render() {
     accountSuccessMsgContainer.style.display = 'none';
     createAccountContainer.style.display = "none";
-    loginContainer.style.transform = "scale(1)";
+    loginContainer.style.display = "flex";
     document.querySelector('.account-delete-btn').style.display = 'block';
     loginBtn.addEventListener('click', logIn)
 
