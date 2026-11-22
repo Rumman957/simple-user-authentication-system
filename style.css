@@ -47,7 +47,12 @@ body {
     flex-direction: column;
     gap: .6rem;
 }
-
+.hide-show-icon {
+    width: 20px;
+}
+.hide-password-icon {
+    display: none;
+}
 .continue-with-other-accounts-container img {
     width: 24px;
 }
@@ -193,7 +198,7 @@ header h1 {
     display: none;
 }
 
-.sign-in-btn {
+.sign-in-btn, .sign-up-btn  {
     border: none;
     color: #3BB77E;
     background-color: none;

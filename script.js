@@ -24,6 +24,7 @@ const loginPasswordErrors = [...document.querySelectorAll('.login-form .password
 const createAccountBtn = document.querySelector('.create-account-btn');
 const loginBtn = document.querySelector('.login-btn');
 
+
 let userData = [];
 const userName = document.getElementById('user-name');
 
@@ -51,7 +52,7 @@ function createAccount() {
     const hasEnteredAllData = createAccountCredentialsArray.every(input => input.value);
     let isPasswordConfirmed;
     if (createAccountCredentialsArray[3].value.trim()) {
-         isPasswordConfirmed = confirmPassword();
+        isPasswordConfirmed = confirmPassword();
 
     }
 
@@ -139,7 +140,7 @@ function logIn() {
 
         }
     }
-    
+
     loginCredentialsArray.forEach((input) => {
         input.addEventListener('focus', () => {
             // Selects the error message of the specific input
@@ -156,8 +157,6 @@ function saveData() {
 
     }
 }
-
-
 
 function loadData() {
     const data = localStorage.getItem('userData');
@@ -177,6 +176,30 @@ function render() {
 
 }
 
+function showHidePassword(form, wrapper) {
+    const passwordWrapper = document.querySelector(`${form} ${wrapper}`);
+    const passwordWrapperBtns = [...document.querySelectorAll(`${form} ${wrapper} button`)];
+
+    passwordWrapperBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            if (btn.classList.contains('show-password-icon')) {
+                document.querySelector(`${form} ${wrapper} input`).type = 'text';
+                btn.style.display = 'none';
+                btn.nextElementSibling.style.display = "block";
+            }
+            else {
+                document.querySelector(`${form} ${wrapper} input`).type = 'password';
+                btn.style.display = 'none';
+                btn.previousElementSibling.style.display = "block";
+            }
+        })
+    })
+
+}
+
+showHidePassword('.create-account-form', '.password-wrapper');
+showHidePassword('.create-account-form', '.confirm-password-wrapper');
+showHidePassword('.login-form', '.password-wrapper');
 
 createAccountBtn.addEventListener('click', () => {
     createAccount();
