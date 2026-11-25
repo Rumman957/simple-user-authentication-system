@@ -27,8 +27,8 @@ CreateME uses browser's local storage to save user's data. As I have not reached
 We all create accounts and logs into them on the daily basis. It's a very common task and I also do it on a high rate. This sparked curiousity in my mind that how does this all work which I do so commonly. That's why I decided to build this project and get an experience of behind-the-scenes (according to my current level).
 
 ## Screenshots
-![Screenshot](Public/Screenshots/Screenshot1.JPG)
-![Screenshot](Public/Screenshots/Screenshot2.JPG)
-![Screenshot](Public/Screenshots/Screenshot3.JPG)
-![Screenshot](Public/Screenshots/Screenshot4.JPG)
-![Screenshot](Public/Screenshots/Screenshot5.JPG)
+![Screenshot](Screenshots/Screenshot1.JPG)
+![Screenshot](Screenshots/Screenshot2.JPG)
+![Screenshot](Screenshots/Screenshot3.JPG)
+![Screenshot](Screenshots/Screenshot4.JPG)
+![Screenshot](Screenshots/Screenshot5.JPG)
